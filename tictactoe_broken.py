@@ -1,3 +1,4 @@
+#Changes made by: Daniel Fernandes(M00908452)
 #tictactoe game.
 
 # Find the 4 errors in the code and fix them,
@@ -8,7 +9,7 @@ def draw_line(width, edge, filling):
 
 
 def display_winner(player):
-    if player == 0:
+    if player == 0:  
         print("Tie")
     else:
         print("Player " + str(player) + " wins!")
@@ -77,7 +78,7 @@ def convert_input_to_coordinate(user_input):
     return user_input - 1
 
 def switch_player(player):
-    if player = 1:
+    if player == 1: #Comparison operator == was needed
         return 2
     else:
         return 1
@@ -98,12 +99,12 @@ if __name__ == '__main__':
     while winner == 0 and moves_exist(game):
         print("Currently player: " + str(player))
         available = False
-        while not available
+        while not available: #was missing a colon
             row = convert_input_to_coordinate(int(input("Which row? (start with 1) ")))
             column = convert_input_to_coordinate(int(input("Which column? (start with 1) ")))
-            available = check_space_empty(game, row)
+            available = check_space_empty(game, row, column)#Third argument 'column' was missing
         game = add_piece(game, player, row, column)
         display_game(game)
         player = switch_player(player)
-#        winner = check_winner(game)
+        winner = check_winner(game)  #was being commented, which was preventing the program from declaring the winner
     display_winner(winner)
